@@ -4,8 +4,8 @@ import requests
 
 @view_config(route_name='home', renderer='templates/home/home.mako')
 def home_view(request):
-
-    session = requests.get('http://localhost:8000/session', cookies=request.cookies)
+    magpie_url = request.registry.settings['magpie.url']
+    session = requests.get(magpie_url+'/session', cookies=request.cookies)
     if session.status_code == 200:
         json_data = session.json()
         if json_data['authenticated']:

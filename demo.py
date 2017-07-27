@@ -16,6 +16,7 @@ def main(global_settings, **settings):
     config.include('pyramid_mako')
     config.include('login')
     config.include('home')
+    config.include('management')
 
     config.scan()
     return config.make_wsgi_app()
@@ -24,6 +25,7 @@ def main(global_settings, **settings):
 if __name__ == '__main__':
     settings = {
         'auth.secret': 'seekrit',
+        'magpie.url': 'http://localhost:8000'
     }
     app = main({}, **settings)
     from wsgiref.simple_server import make_server
