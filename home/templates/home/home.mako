@@ -16,3 +16,4 @@
 <a href="http://localhost:5003/register">registration</a></br>
 <a href="http://localhost:5003/user_manager">user_manager</a></br>
 <a href="http://localhost:5003/user_manager">group_manager</a></br>
+<a href="http://localhost:5003/service_manager">service_manager</a></br>

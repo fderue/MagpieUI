@@ -1,5 +1,6 @@
 from management import *
 
+
 @view_config(route_name='group_manager', renderer='templates/group_manager.mako')
 def group_manager_view(request):
     magpie_url = request.registry.settings['magpie.url']
@@ -30,6 +31,7 @@ def group_manager_view(request):
             group_users_dict[group_name] = res_group_users.json()['user_names']
     except:
         raise HTTPBadRequest(detail='Bad Json response')
+
 
     return {'group_names': group_names,
             'group_users_dict': group_users_dict}
