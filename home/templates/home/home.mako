@@ -4,7 +4,7 @@
 
 %if user_name:
 <p>You are logged in as: ${ user_name }</p>
-<form action="http://localhost:8000/signout" method="post">
+<form action="${request.registry.settings['magpie.url']}/signout" method="get">
     <!-- "came_from", "password" and "login" can all be overwritten -->
     <input type="hidden" value="${request.path_url}" name="came_from" id="came_from">
     <input type="submit" value="Sign Out" name="signout" id="submit">

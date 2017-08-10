@@ -24,10 +24,23 @@ def login_view(request):
         else:
             if 'submit' in request.POST:
                 new_location = magpie_url+'/signin'
-                return HTTPTemporaryRedirect(location=new_location)
+                data_to_send = {}
+                for tuple in request.POST:
+                    data_to_send[tuple] = request.POST.get(tuple)
+                res = requests.post(new_location, data=data_to_send)
+                if res.status_code == 200:
+                    pyr_res = Response(body=res.content)
+                    for cookie in res.cookies:
+                        #request.response.set_cookie(name=cookie.name, value=cookie.value)
+                        pyr_res.set_cookie(name=cookie.name, value=cookie.value)
+                    return pyr_res
+                else:
+                    return Response(body=res.content)
+
+
 
     else:
-        return session
+        return Response(body=session.content)
 
     return {'external_provider': external_provider}
 
