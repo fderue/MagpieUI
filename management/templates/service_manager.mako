@@ -13,17 +13,3 @@
     <input type="submit" value="register" name="register">
 </form>
 
-<h3>Service List</h3>
-%for service in service_info_list:
-    ${service['service_name']}, ${service['service_type']}, ${service['service_url']}
-    </br>
-%endfor
-
-<h3>Delete Service</h3>
-<form action="${request.path}" method="post">
-%for service in service_info_list:
-    <input type="checkbox" value="${service['service_name']}" name="service_names">${service['service_name']}
-    </br>
-%endfor
-<input type="submit" value="unregister" name="unregister">
-</form>

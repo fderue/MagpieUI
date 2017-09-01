@@ -104,13 +104,8 @@ def service_manager_view(request):
 
     res = requests.get(magpie_url + '/services')
     check_res(res)
-    service_names = res.json()['service_names']
-    service_info_list = []
-    for service_name in service_names:
-        res = requests.get(magpie_url+'/services/'+service_name)
-        check_res(res)
-        service_info_list.append(res.json())
+    service_names = res.json()['services']
 
-    return {'service_info_list': service_info_list,
+    return {'service_info_list': service_names,
             'service_types': ['wps', 'wms', 'thredds']}
 
